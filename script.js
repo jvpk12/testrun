@@ -2,7 +2,7 @@
 // 1. PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
 //    (see the setup instructions provided alongside this file)
 // =============================================================
-const SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBGZGCciLJaC1sbWs1FbYExIdL7HNUHWAKY9oj147qzIqn9wwC8-QpT_xgIzQ0B_mn/exec";
 
 const form = document.getElementById("rsvp-form");
 const guestFields = document.getElementById("guest-fields");
