@@ -1,4 +1,4 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxl6zRF25R4Hn7JiaR7M_x7-Qc6QOv4gClpuSQu_j5aSx9LqEXPIe83uOeL_CuT617U/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwLKQRm7ZwLivmx9Km_glnoKU3I2I9nrNlY3tcXdgQoW0LpCP609ValcGiYXIqk2-Ss/exec';
 const form = document.getElementById('rsvpForm');
 const submitBtn = document.getElementById('submitBtn');
 const statusMsg = document.getElementById('statusMsg');
