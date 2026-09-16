@@ -50,22 +50,17 @@ form.addEventListener("submit", async (event) => {
   setSubmitting(true);
 
   try {
-    const response = await fetch(SCRIPT_URL, {
+    // Apps Script doesn't reliably send CORS headers back, so the browser
+    // won't let us read the response even when the request succeeds.
+    // "no-cors" sends the request but returns an opaque response we can't
+    // inspect — a thrown error here means the request itself failed
+    // (bad URL, no network, etc.), not that the sheet rejected it.
+    await fetch(SCRIPT_URL, {
       method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" }, // avoids CORS preflight to Apps Script
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload),
     });
-
-    // Apps Script returns JSON like { "result": "success" }
-    let ok = response.ok;
-    try {
-      const data = await response.json();
-      ok = ok && data.result !== "error";
-    } catch (_) {
-      // If the response can't be parsed, fall back to response.ok
-    }
-
-    if (!ok) throw new Error("Sheet rejected the submission");
 
     form.reset();
     guestFields.dataset.hidden = "true";
