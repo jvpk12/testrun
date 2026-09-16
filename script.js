@@ -1,4 +1,4 @@
-const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxl6zRF25R4Hn7JiaR7M_x7-Qc6QOv4gClpuSQu_j5aSx9LqEXPIe83uOeL_CuT617U/exec';
 const form = document.getElementById('rsvpForm');
 const submitBtn = document.getElementById('submitBtn');
 const statusMsg = document.getElementById('statusMsg');
