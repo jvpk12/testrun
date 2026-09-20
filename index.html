@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>You're Invited — RSVP</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -14,71 +14,78 @@
 <body class="min-h-screen bg-[#1B2A22] text-[#F7F3EA] font-body antialiased">
 
 <div class="min-h-screen flex items-center justify-center px-5 py-16">
-  <div class="w-full max-w-[560px]">
+  <div id="scene">
+
+    <!-- Envelope -->
+    <div class="envelope-wrap" id="envelope" data-open="false" role="button" tabindex="0" aria-label="Open the invitation">
+      <div class="env-shadow"></div>
+      <div class="env-back"></div>
+      <div class="letter"><p>Nanay's<br/>75th Birthday</p></div>
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+      <div class="env-seal"><span>N</span></div>
+      <p class="env-hint">tap the envelope</p>
+    </div>
 
     <!-- Card -->
-    <div class="relative bg-[#F7F3EA] text-[#1B2A22] rounded-[2px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden">
+    <div class="card" id="card" data-visible="false">
+      <div class="relative bg-[#F7F3EA] text-[#1B2A22] rounded-[2px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden">
+        <div class="h-[6px] bg-gradient-to-r from-[#7C9885] via-[#B8945F] to-[#7C9885]"></div>
 
-      <!-- top hairline detail -->
-      <div class="h-[6px] bg-gradient-to-r from-[#7C9885] via-[#B8945F] to-[#7C9885]"></div>
+        <div class="px-8 py-10 sm:px-12 sm:py-14">
 
-      <div class="px-8 py-10 sm:px-12 sm:py-14">
+          <p class="font-body text-[13px] tracking-wide text-[#7C9885] mb-2">Saturday, the 5th of December</p>
+          <h1 class="font-display text-[2.6rem] leading-[1.05] mb-1">Nanay's <br/>Birthday</h1>
+          <p class="font-body text-[15px] text-[#3F4A40] mt-4 max-w-[38ch] leading-relaxed">
+            We are inviting you to her 75th Birthday at Kamay Kainan
+          </p>
 
-        <p class="font-body text-[13px] tracking-wide text-[#7C9885] mb-2">Saturday, the 5th of December</p>
-        <h1 class="font-display text-[2.6rem] leading-[1.05] mb-1">Nanay's <br/>Birthday</h1>
-        <p class="font-body text-[15px] text-[#3F4A40] mt-4 max-w-[38ch] leading-relaxed">
-         We are inviting you to her 75th Birthday at Kamay Kainan
-        </p>
+          <div class="h-px bg-[#1B2A22]/10 my-8"></div>
 
-        <div class="h-px bg-[#1B2A22]/10 my-8"></div>
+          <form id="rsvp-form" class="space-y-6" novalidate>
 
-        <!-- Form -->
-        <form id="rsvp-form" class="space-y-6" novalidate>
-
-          <div>
-            <label for="fullName" class="block font-body text-[13px] text-[#3F4A40] mb-1.5">Full name</label>
-            <input
-              type="text" id="fullName" name="fullName" required
-              class="w-full bg-transparent border-0 border-b border-[#1B2A22]/25 focus:border-[#B8945F] focus:ring-0 outline-none px-0 py-2 font-body text-[16px] placeholder:text-[#1B2A22]/30 transition-colors"
-              placeholder="Jamie Alvarez" />
-          </div>
-
-          <div>
-            <label for="email" class="block font-body text-[13px] text-[#3F4A40] mb-1.5">Email address</label>
-            <input
-              type="email" id="email" name="email" required
-              class="w-full bg-transparent border-0 border-b border-[#1B2A22]/25 focus:border-[#B8945F] focus:ring-0 outline-none px-0 py-2 font-body text-[16px] placeholder:text-[#1B2A22]/30 transition-colors"
-              placeholder="jamie@email.com" />
-          </div>
-
-          <fieldset>
-            <legend class="block font-body text-[13px] text-[#3F4A40] mb-2">Will you be attending?</legend>
-            <div class="grid grid-cols-2 gap-3">
-              <label class="attend-option">
-                <input type="radio" name="attending" value="Yes" required class="peer sr-only" />
-                <span class="attend-label">Yes I will</span>
-              </label>
-              <label class="attend-option">
-                <input type="radio" name="attending" value="No" required class="peer sr-only" />
-                <span class="attend-label">Sorry I can't</span>
-              </label>
+            <div>
+              <label for="fullName" class="block font-body text-[13px] text-[#3F4A40] mb-1.5">Full name</label>
+              <input type="text" id="fullName" name="fullName" required
+                class="w-full bg-transparent border-0 border-b border-[#1B2A22]/25 focus:border-[#B8945F] focus:ring-0 outline-none px-0 py-2 font-body text-[16px] placeholder:text-[#1B2A22]/30 transition-colors"
+                placeholder="Jamie Alvarez" />
             </div>
-          </fieldset>
-          <input type="hidden" id="guestCount" name="guestCount" value="0" />
 
+            <div>
+              <label for="email" class="block font-body text-[13px] text-[#3F4A40] mb-1.5">Email address</label>
+              <input type="email" id="email" name="email" required
+                class="w-full bg-transparent border-0 border-b border-[#1B2A22]/25 focus:border-[#B8945F] focus:ring-0 outline-none px-0 py-2 font-body text-[16px] placeholder:text-[#1B2A22]/30 transition-colors"
+                placeholder="jamie@email.com" />
+            </div>
 
-          <button
-            type="submit" id="submit-btn"
-            class="w-full bg-[#1B2A22] text-[#F7F3EA] font-body text-[15px] py-3.5 mt-2 hover:bg-[#2A3D31] active:bg-[#0F1712] transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
-            <span id="submit-text">Send</span>
-          </button>
+            <fieldset>
+              <legend class="block font-body text-[13px] text-[#3F4A40] mb-2">Will you be attending?</legend>
+              <div class="grid grid-cols-2 gap-3">
+                <label class="attend-option">
+                  <input type="radio" name="attending" value="Yes" required class="peer sr-only" />
+                  <span class="attend-label">Yes I will</span>
+                </label>
+                <label class="attend-option">
+                  <input type="radio" name="attending" value="No" required class="peer sr-only" />
+                  <span class="attend-label">Sorry I can't</span>
+                </label>
+              </div>
+            </fieldset>
+            <input type="hidden" id="guestCount" name="guestCount" value="0" />
 
-          <p id="form-status" class="font-body text-[13px] text-center pt-1 min-h-[18px]" aria-live="polite"></p>
+            <button type="submit" id="submit-btn"
+              class="w-full bg-[#1B2A22] text-[#F7F3EA] font-body text-[15px] py-3.5 mt-2 hover:bg-[#2A3D31] active:bg-[#0F1712] transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+              <span id="submit-text">Send</span>
+            </button>
 
-        </form>
+            <p id="form-status" class="font-body text-[13px] text-center pt-1 min-h-[18px]" aria-live="polite"></p>
 
+          </form>
+
+        </div>
       </div>
     </div>
+
   </div>
 </div>
 
