@@ -36,7 +36,7 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  if (SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbwY3RDUSb2kJnCaRn-jJxa1a8qZF2qwHtdUDAue4wIc4CHrX12mUDjcEaVC9y9mfaGl/exec")) {
+  if (SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE")) {
     setStatus("Form isn't connected to Google Sheets yet — see setup instructions.", "error");
     return;
   }
