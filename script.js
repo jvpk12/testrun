@@ -2,7 +2,7 @@
 // 1. PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
 //    (see the setup instructions provided alongside this file)
 // =============================================================
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBGZGCciLJaC1sbWs1FbYExIdL7HNUHWAKY9oj147qzIqn9wwC8-QpT_xgIzQ0B_mn/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwY3RDUSb2kJnCaRn-jJxa1a8qZF2qwHtdUDAue4wIc4CHrX12mUDjcEaVC9y9mfaGl/exec";
 
 const form = document.getElementById("rsvp-form");
 const statusEl = document.getElementById("form-status");
@@ -36,7 +36,7 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  if (SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbzBGZGCciLJaC1sbWs1FbYExIdL7HNUHWAKY9oj147qzIqn9wwC8-QpT_xgIzQ0B_mn/exec")) {
+  if (SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbwY3RDUSb2kJnCaRn-jJxa1a8qZF2qwHtdUDAue4wIc4CHrX12mUDjcEaVC9y9mfaGl/exec")) {
     setStatus("Form isn't connected to Google Sheets yet — see setup instructions.", "error");
     return;
   }
