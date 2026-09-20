@@ -86,3 +86,9 @@ function setStatus(message, state) {
     delete statusEl.dataset.state;
   }
 }
+document.querySelectorAll('input[name="attending"]').forEach(function (radio) {
+  radio.addEventListener('change', function () {
+    document.getElementById('guestCount').value =
+      this.value === 'Joyfully accepts' ? '1' : '0';
+  });
+});
