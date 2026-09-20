@@ -5,22 +5,18 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzBGZGCciLJaC1sbWs1FbYExIdL7HNUHWAKY9oj147qzIqn9wwC8-QpT_xgIzQ0B_mn/exec";
 
 const form = document.getElementById("rsvp-form");
-const guestFields = document.getElementById("guest-fields");
 const statusEl = document.getElementById("form-status");
 const submitBtn = document.getElementById("submit-btn");
 const submitText = document.getElementById("submit-text");
+const guestCountInput = document.getElementById("guestCount");
 
-// Show the guest-count / dietary fields only once the person has
-// indicated they're actually coming.
-const attendingRadios = form.querySelectorAll('input[name="attending"]');
-attendingRadios.forEach((radio) => {
+// Keep the hidden guestCount input in sync with the attending choice:
+// 1 if joyfully accepting, 0 if regretfully declining.
+form.querySelectorAll('input[name="attending"]').forEach((radio) => {
   radio.addEventListener("change", () => {
-    const isAttending = radio.value === "Joyfully accepts" && radio.checked;
-    guestFields.dataset.hidden = isAttending ? "false" : "true";
+    guestCountInput.value = radio.value === "Joyfully accepts" ? "1" : "0";
   });
 });
-// Start hidden until a choice is made
-guestFields.dataset.hidden = "true";
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -31,9 +27,7 @@ form.addEventListener("submit", async (event) => {
     fullName: formData.get("fullName")?.trim() || "",
     email: formData.get("email")?.trim() || "",
     attending: formData.get("attending") || "",
-    guestCount: formData.get("attending") === "Joyfully accepts" ? formData.get("guestCount") : "0",
-    dietary: formData.get("dietary")?.trim() || "",
-    message: formData.get("message")?.trim() || "",
+    guestCount: formData.get("guestCount") || "0",
     submittedAt: new Date().toISOString(),
   };
 
@@ -42,7 +36,7 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  if (SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE")) {
+  if (SCRIPT_URL.includes("https://script.google.com/macros/s/AKfycbzBGZGCciLJaC1sbWs1FbYExIdL7HNUHWAKY9oj147qzIqn9wwC8-QpT_xgIzQ0B_mn/exec")) {
     setStatus("Form isn't connected to Google Sheets yet — see setup instructions.", "error");
     return;
   }
@@ -63,7 +57,7 @@ form.addEventListener("submit", async (event) => {
     });
 
     form.reset();
-    guestFields.dataset.hidden = "true";
+    guestCountInput.value = "0";
     setStatus("Thank you — your RSVP has been received.", "success");
   } catch (err) {
     console.error(err);
@@ -86,9 +80,3 @@ function setStatus(message, state) {
     delete statusEl.dataset.state;
   }
 }
-document.querySelectorAll('input[name="attending"]').forEach(function (radio) {
-  radio.addEventListener('change', function () {
-    document.getElementById('guestCount').value =
-      this.value === 'Joyfully accepts' ? '1' : '0';
-  });
-});
