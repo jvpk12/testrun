@@ -2,7 +2,7 @@
 // 1. PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
 //    (see the setup instructions provided alongside this file)
 // =============================================================
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwY3RDUSb2kJnCaRn-jJxa1a8qZF2qwHtdUDAue4wIc4CHrX12mUDjcEaVC9y9mfaGl/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYroI2ej7ufrmOVZGXoeLcvfeVwu3nX4foDQjuwK9LvwLGCeb8qf3ovXzW0qvjbBzumQ/exec";
 
 const form = document.getElementById("rsvp-form");
 const statusEl = document.getElementById("form-status");
