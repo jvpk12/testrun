@@ -3,14 +3,36 @@
 //    (see the setup instructions provided alongside this file)
 // =============================================================
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYroI2ej7ufrmOVZGXoeLcvfeVwu3nX4foDQjuwK9LvwLGCeb8qf3ovXzW0qvjbBzumQ/exec";
+
+const envelope = document.getElementById("envelope");
+const card = document.getElementById("card");
 const form = document.getElementById("rsvp-form");
 const statusEl = document.getElementById("form-status");
 const submitBtn = document.getElementById("submit-btn");
 const submitText = document.getElementById("submit-text");
 const guestCountInput = document.getElementById("guestCount");
-const envelope = document.getElementById('envelope');
-const card = document.getElementById('card');
 
+// ---------- Envelope open animation ----------
+function openInvitation() {
+  if (envelope.dataset.open === "true") return;
+  envelope.dataset.open = "true";
+  envelope.setAttribute("aria-hidden", "true");
+  setTimeout(() => {
+    card.dataset.visible = "true";
+    const firstField = document.getElementById("fullName");
+    if (firstField) firstField.focus({ preventScroll: true });
+  }, 550);
+}
+
+envelope.addEventListener("click", openInvitation);
+envelope.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    openInvitation();
+  }
+});
+
+// ---------- RSVP form ----------
 // Keep the hidden guestCount input in sync with the attending choice:
 // 1 if joyfully accepting, 0 if regretfully declining.
 form.querySelectorAll('input[name="attending"]').forEach((radio) => {
@@ -21,6 +43,12 @@ form.querySelectorAll('input[name="attending"]').forEach((radio) => {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
   setStatus("", null);
 
   const formData = new FormData(form);
@@ -71,44 +99,3 @@ function setStatus(message, state) {
     delete statusEl.dataset.state;
   }
 }
-
-function openInvitation() {
-  if (envelope.dataset.open === 'true') return;
-  envelope.dataset.open = 'true';
-  envelope.setAttribute('aria-hidden', 'true');
-  setTimeout(() => {
-    card.dataset.visible = 'true';
-    const firstField = document.getElementById('fullName');
-    if (firstField) firstField.focus({ preventScroll: true });
-  }, 550);
-}
- 
-envelope.addEventListener('click', openInvitation);
-envelope.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openInvitation(); }
-});
- 
-const form = document.getElementById('rsvp-form');
-const submitBtn = document.getElementById('submit-btn');
-const submitText = document.getElementById('submit-text');
-const status = document.getElementById('form-status');
- 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
-  submitBtn.disabled = true;
-  submitText.textContent = 'Sending…';
-  status.textContent = '';
-  status.removeAttribute('data-state');
- 
-  setTimeout(() => {
-    submitBtn.disabled = false;
-    submitText.textContent = 'Send';
-    status.textContent = 'Thank you — your RSVP has been received.';
-    status.dataset.state = 'success';
-    form.reset();
-  }, 700);
-});
