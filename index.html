@@ -24,10 +24,10 @@
 
       <div class="px-8 py-10 sm:px-12 sm:py-14">
 
-        <p class="font-body text-[13px] tracking-wide text-[#7C9885] mb-2">Saturday, the 24th of October</p>
-        <h1 class="font-display text-[2.6rem] leading-[1.05] mb-1">Mara &amp; Theo<br/>are getting married</h1>
+        <p class="font-body text-[13px] tracking-wide text-[#7C9885] mb-2">Saturday, the 5th of December</p>
+        <h1 class="font-display text-[2.6rem] leading-[1.05] mb-1">Nanay's &amp;<br/>Birthday</h1>
         <p class="font-body text-[15px] text-[#3F4A40] mt-4 max-w-[38ch] leading-relaxed">
-          We'd love for you to join us at Hollow Creek Farm as we say our vows and celebrate long into the evening. Kindly let us know you're coming by the 1st of October.
+         We are inviting you to her 75th Birthday at Kamay Kainan
         </p>
 
         <div class="h-px bg-[#1B2A22]/10 my-8"></div>
@@ -64,35 +64,8 @@
               </label>
             </div>
           </fieldset>
+          <input type="hidden" id="guestCount" name="guestCount" value="0" />
 
-          <div id="guest-fields" class="space-y-6 grid-transition">
-            <div>
-              <label for="guestCount" class="block font-body text-[13px] text-[#3F4A40] mb-1.5">Number attending (including you)</label>
-              <select id="guestCount" name="guestCount"
-                class="w-full bg-transparent border-0 border-b border-[#1B2A22]/25 focus:border-[#B8945F] focus:ring-0 outline-none px-0 py-2 font-body text-[16px] transition-colors">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="dietary" class="block font-body text-[13px] text-[#3F4A40] mb-1.5">Dietary notes <span class="text-[#1B2A22]/40">(optional)</span></label>
-              <input
-                type="text" id="dietary" name="dietary"
-                class="w-full bg-transparent border-0 border-b border-[#1B2A22]/25 focus:border-[#B8945F] focus:ring-0 outline-none px-0 py-2 font-body text-[16px] placeholder:text-[#1B2A22]/30 transition-colors"
-                placeholder="Vegetarian, nut allergy, etc." />
-            </div>
-          </div>
-
-          <div>
-            <label for="message" class="block font-body text-[13px] text-[#3F4A40] mb-1.5">A note for the couple <span class="text-[#1B2A22]/40">(optional)</span></label>
-            <textarea
-              id="message" name="message" rows="3"
-              class="w-full bg-transparent border-0 border-b border-[#1B2A22]/25 focus:border-[#B8945F] focus:ring-0 outline-none px-0 py-2 font-body text-[16px] placeholder:text-[#1B2A22]/30 resize-none transition-colors"
-              placeholder="Any well wishes, song requests, or questions"></textarea>
-          </div>
 
           <button
             type="submit" id="submit-btn"
