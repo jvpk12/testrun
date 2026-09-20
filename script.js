@@ -14,7 +14,7 @@ const guestCountInput = document.getElementById("guestCount");
 // 1 if joyfully accepting, 0 if regretfully declining.
 form.querySelectorAll('input[name="attending"]').forEach((radio) => {
   radio.addEventListener("change", () => {
-    guestCountInput.value = radio.value === "Accept" ? "1" : "0";
+    guestCountInput.value = radio.value === "Yes" ? "1" : "0";
   });
 });
 
