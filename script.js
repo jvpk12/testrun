@@ -28,7 +28,7 @@ form.addEventListener("submit", async (event) => {
     email: formData.get("email")?.trim() || "",
     attending: formData.get("attending") || "",
     guestCount: formData.get("guestCount") || "0",
-    submittedAt: new Date().toISOString(),
+    submittedAt: new Date().toISOString().split("T")[0],
   };
 
   if (!payload.fullName || !payload.email || !payload.attending) {
